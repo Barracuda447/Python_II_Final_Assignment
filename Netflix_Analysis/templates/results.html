@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results Page</title>
+    <title>Results</title>
 </head>
 <body>
     <h1>Results</h1>
-    <p>This is a placeholder for the results.</p>
-    <a href="{% url 'index' %}">Go Back to Home</a>
+    <div>
+        <h2>Movies vs TV Shows</h2>
+        <img src="data:image/png;base64,{{ chart }}" alt="Movies vs TV Shows Chart">
+    </div>
 </body>
 </html>
