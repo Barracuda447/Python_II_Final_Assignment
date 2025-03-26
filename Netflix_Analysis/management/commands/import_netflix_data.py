@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Relative path to the CSV file
-        file_path = os.path.join(os.path.dirname(__file__), '../../data/netflix_titles.csv')
+        file_path = os.path.join(os.path.dirname(__file__), '../../data/cleaned_data.csv')
         
         file_path = os.path.abspath(file_path)  # Get absolute path for ease
 
