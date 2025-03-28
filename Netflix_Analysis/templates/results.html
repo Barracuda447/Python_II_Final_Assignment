@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
 </head>
+
 <body>
     <h1>Results</h1>
     <div>
         <h2>Movies vs TV Shows</h2>
-        <img src="data:image/png;base64,{{ chart }}" alt="Movies vs TV Shows Chart">
+        {% for image in chart %}
+        <img src="data:image/png;base64,{{ image }}" alt="Movies vs TV Shows Chart">
+        {% endfor %}
     </div>
+
+
 </body>
+
 </html>

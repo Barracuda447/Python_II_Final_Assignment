@@ -1,13 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Netflix Analysis</title>
 </head>
+
 <body>
     <h1>CPRO Python II Final Project</h1>
     <p>Hey look, some text!</p>
     <a href="{% url 'results' %}">Results.html</a>
+
+
+    <form method="post">
+        {% csrf_token%}
+        {{ form.as_p }}
+        <button type="submit">Add Movie</button>
+    </form>
+
+    <h2>Movie List</h2>
+    <ul>
+        {% for movie in movies %}
+        <li>title {{movie.title}}</li>
+        {% endfor %}
+        <!-- <table>
+            <tr>
+                <th>Field 1</th>
+                ...
+                <th>Field N</th>
+            </tr>
+            {% for item in movies %}
+            <tr>
+                <td>{{ item.field1 }}</td>
+                ...
+                <td>{{ item.fieldN }}</td>
+            </tr>
+            {% endfor %}
+        </table> -->
+    </ul>
 </body>
+
 </html>
