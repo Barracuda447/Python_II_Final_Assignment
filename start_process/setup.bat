@@ -1,6 +1,9 @@
 @echo off
 
 
+:: delete sqlite to allow for proper data
+del ..\db.sqlite3
+
 
 :: 3. Install Dependencies
 echo Installing dependencies from requirements.txt...

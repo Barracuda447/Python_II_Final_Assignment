@@ -35,12 +35,20 @@ mostFrequent = movieType.mode()
 print(f"Most common type of movie is: {mostFrequent.iloc[0]}")
 
 #Find oldest and newest movie
-oldestMovie = df[df['release_year'] == df['release_year'].min()]
-newestMovie = df[df['release_year'] == df['release_year'].max()]
-
-#Find average release year
-avgYear = df['release_year'].mean()
-print(f"Average release year of movies is: {int(avgYear)}")
+oldestYear = df.loc[df['type']=="Movie", 'release_year'].min()
+oldestMovies = df[(df['release_year']==oldestYear)& (df['type']=="Movie")]
+print(f"Oldest movie(s):")
+print("\n".join(oldestMovies['title'].tolist()))
+newestYear = df.loc[df['type']=="Movie", 'release_year'].max()
+newestMovies = df[(df['release_year']==newestYear)&(df['type']=="Movie")]
+print()
+print()
+print("Newest Movie(s)")
+print("\n".join(newestMovies['title'].tolist()))
+#Find year with most releases
+years = df['release_year'].value_counts()
+mostYear = years.idxmax()
+print(f"Year with most titles released: {mostYear}")
 
 df.to_csv(r"Netflix_Analysis\cleaned_data.csv")
 
