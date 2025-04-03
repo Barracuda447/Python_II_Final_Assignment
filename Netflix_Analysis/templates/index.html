@@ -20,25 +20,58 @@
     </form>
 
     <h2>Movie List</h2>
-    <ul>
-        {% for movie in movies %}
+    <!-- <ul> -->
+    <!-- {% for movie in movies %}
         <li>title {{movie.title}}</li>
+        {% endfor %} -->
+    <table>
+        <tr>
+            <th>show_id</th>
+
+            <th>type</th>
+
+            <th>title</th>
+            <!-- ... -->
+            <th>director</th>
+            <!-- ... -->
+            <th>cast</th>
+            <!-- ... -->
+            <th>country</th>
+            <!-- ... -->
+            <th>date_added</th>
+            <!-- ... -->
+            <th>release_year</th>
+            <!-- ... -->
+            <th>rating</th>
+            <!-- ... -->
+            <th>duration</th>
+        </tr>
+        {% for item in movies %}
+        <tr>
+            <td>{{ item.show_id }}</td>
+            <!-- ... -->
+            <td>{{ item.type }}</td>
+            <!-- ... -->
+            <td>{{ item.title }}</td>
+            <!-- ... -->
+            <td>{{ item.director }}</td>
+            <!-- ... -->
+            <td>{{ item.cast }}</td>
+            <!-- ... -->
+            <td>{{ item.country }}</td>
+            <!-- ... -->
+            <td>{{ item.date_added }}</td>
+            <!-- ... -->
+            <td>{{ item.release_year }}</td>
+            <!-- ... -->
+            <td>{{ item.rating }}</td>
+            <!-- ... -->
+            <td>{{ item.duration }}</td>
+
+        </tr>
         {% endfor %}
-        <!-- <table>
-            <tr>
-                <th>Field 1</th>
-                ...
-                <th>Field N</th>
-            </tr>
-            {% for item in movies %}
-            <tr>
-                <td>{{ item.field1 }}</td>
-                ...
-                <td>{{ item.fieldN }}</td>
-            </tr>
-            {% endfor %}
-        </table> -->
-    </ul>
+    </table>
+    <!-- </ul> -->
 </body>
 
 </html>
