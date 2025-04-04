@@ -12,6 +12,6 @@ class Movie(models.Model):
     release_year = models.IntegerField(null=True, blank=True)
     rating = models.CharField(max_length=10, null=True, blank=True)
     duration = models.CharField(max_length=50, null=True, blank=True)  # Duration of movie or number of tv show seasons
-
+    listed_in = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.title

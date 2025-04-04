@@ -5,18 +5,66 @@ from django.shortcuts import render, redirect
 from django.db.models import Count
 from .models import Movie
 from .forms import MovieForm
-
-
 def index(request):
     movies = Movie.objects.all()
-    # form = MovieForm()
-    # if request.method == "POST":
-    #     form = MovieForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #         return redirect('index')
-    # return render(request, 'index.html', {'movies': movies, 'form':form})
-    return render(request, 'index.html', {'movies': movies})
+    
+    search_query = request.GET.get('search', '')
+    genre_filter = request.GET.get('genre', '')
+    year_filter = request.GET.get('year', '')
+    country_filter = request.GET.get('country', '')
+
+    if search_query:
+        movies = movies.filter(
+            title__icontains=search_query
+        ) | movies.filter(
+            director__icontains=search_query
+        ) | movies.filter(
+            cast__icontains=search_query
+        )
+
+    if genre_filter:
+        movies = movies.filter(listed_in__icontains=genre_filter)
+
+    if year_filter:
+        movies = movies.filter(release_year=year_filter)
+
+    if country_filter:
+        movies = movies.filter(country__icontains=country_filter)
+
+    all_countries = Movie.objects.values_list('country', flat=True).distinct()
+    unique_countries = set()
+
+    for country_entry in all_countries:
+        if country_entry:  
+            country_list = [c.strip() for c in country_entry.split(',')]
+            unique_countries.update(country_list)
+    
+    unique_countries = sorted(unique_countries)
+
+    all_genres = Movie.objects.values_list('listed_in', flat=True).distinct()
+    unique_genres = set()
+
+    for genre_entry in all_genres:
+        if genre_entry:  
+            genre_list = [c.strip() for c in genre_entry.split(',')]
+            unique_genres.update(genre_list)
+
+    unique_genres = sorted(unique_genres)
+
+    years = sorted(Movie.objects.values_list('release_year', flat=True).distinct())
+
+    return render(request, 'index.html', {
+        'movies': movies,
+        'genres': unique_genres,
+        'years': years,
+        'countries': unique_countries,
+        'search_query': search_query,
+        'genre_filter': genre_filter,
+        'year_filter': year_filter,
+        'country_filter': country_filter
+    })
+
+
 
 def results(request):
     
