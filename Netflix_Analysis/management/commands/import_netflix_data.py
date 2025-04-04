@@ -36,6 +36,7 @@ class Command(BaseCommand):
                     release_year=row['release_year'],
                     rating=row['rating'],
                     duration=row['duration'],
+                    listed_in=row['listed_in']
                 )
 
         self.stdout.write(self.style.SUCCESS('Successfully imported Netflix data'))
