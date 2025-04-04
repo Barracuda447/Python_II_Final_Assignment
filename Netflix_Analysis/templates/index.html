@@ -1,77 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Netflix Analysis</title>
-</head>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        table-layout: fixed;
+      }
 
-<body>
-    <h1>CPRO Python II Final Project</h1>
-    <p>Hey look, some text!</p>
-    <a href="{% url 'results' %}">Results.html</a>
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+      }
 
+      .table-container {
+        height: 75vh;
+        overflow-y: auto;
+        border: 1px solid black;
+      }
 
-    <form method="post">
-        {% csrf_token%}
-        {{ form.as_p }}
-        <button type="submit">Add Movie</button>
-    </form>
+      thead th {
+        position: sticky;
+        top: 0;
+        background: white;
+        z-index: 2;
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="{% url 'results' %}">Analysis Graphs</a>
 
     <h2>Movie List</h2>
-    <!-- <ul> -->
-    <!-- {% for movie in movies %}
-        <li>title {{movie.title}}</li>
-        {% endfor %} -->
-    <table>
-        <tr>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
             <th>show_id</th>
-
             <th>type</th>
-
             <th>title</th>
-            <!-- ... -->
             <th>director</th>
-            <!-- ... -->
             <th>cast</th>
-            <!-- ... -->
             <th>country</th>
-            <!-- ... -->
             <th>date_added</th>
-            <!-- ... -->
             <th>release_year</th>
-            <!-- ... -->
             <th>rating</th>
-            <!-- ... -->
             <th>duration</th>
-        </tr>
-        {% for item in movies %}
-        <tr>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in movies %}
+          <tr>
             <td>{{ item.show_id }}</td>
-            <!-- ... -->
             <td>{{ item.type }}</td>
-            <!-- ... -->
             <td>{{ item.title }}</td>
-            <!-- ... -->
             <td>{{ item.director }}</td>
-            <!-- ... -->
             <td>{{ item.cast }}</td>
-            <!-- ... -->
             <td>{{ item.country }}</td>
-            <!-- ... -->
             <td>{{ item.date_added }}</td>
-            <!-- ... -->
             <td>{{ item.release_year }}</td>
-            <!-- ... -->
             <td>{{ item.rating }}</td>
-            <!-- ... -->
             <td>{{ item.duration }}</td>
-
-        </tr>
-        {% endfor %}
-    </table>
-    <!-- </ul> -->
-</body>
-
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
 </html>
