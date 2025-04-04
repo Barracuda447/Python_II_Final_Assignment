@@ -40,7 +40,7 @@ def index(request):
             unique_countries.update(country_list)
     
     unique_countries = sorted(unique_countries)
-
+    unique_countries.remove("")
     all_genres = Movie.objects.values_list('listed_in', flat=True).distinct()
     unique_genres = set()
 
